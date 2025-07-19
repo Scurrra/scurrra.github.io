@@ -1,0 +1,28 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<p>
+				Hi, I'm Ilja Baroŭski, Master of Mathematics and Computer Science. 
+				In 2023, I graduated from the Faculty of Mechanics and Mathematics of the Belarusian State University as Bachelor of Mathematics and System Analyses. 
+				In 2025, I got Master's degree in Mathematics and Computer Science.
+			</p>
+
+			<p>
+				
+			</p>
+		</main>
+		<Footer />
+	</body>
+</html>

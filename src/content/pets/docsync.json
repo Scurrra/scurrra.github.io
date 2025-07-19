@@ -1,0 +1,14 @@
+{
+    "name": "docsync",
+    "stack": [
+        "Go (cobra, promptui)"
+    ],
+    "description": "Tool for synchronizing your multilingual documentation.",
+    "links": {
+        "github": "https://github.com/Scurrra/docsync"
+    },
+    "dates": [
+        "Jul. 2023",
+        "Present"
+    ] 
+}

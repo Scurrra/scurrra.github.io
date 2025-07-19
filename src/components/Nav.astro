@@ -1,0 +1,77 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+import ThemeIcon from "./ThemeIcon.astro";
+
+const { current = "" } = Astro.props;
+---
+
+<style>
+    nav {
+        align-items: center;
+        display: flex;
+        flex: 1;
+        font-family: var(--font-family-sans);
+        font-weight: 700;
+        justify-content: flex-end;
+        text-transform: uppercase;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+        padding: 10px 5px;
+        display: block;
+        position: relative;
+        margin-left: 20px;
+        min-width: 70px;
+        text-align: center;
+    }
+
+    a:not(.selected) {
+        opacity: 0.7;
+    }
+
+    a::before {
+        content: "";
+        position: absolute;
+        transition: transform 0.3s ease;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--text-secondary);
+        transform: scaleX(0);
+    }
+
+    a:hover::before,
+    .selected::before {
+        transform: scaleX(1);
+    }
+
+    .selected::before {
+        background: var(--primary-color);
+    }
+    
+    .theme-toggle-container {
+        padding: 10px 5px;
+        display: block;
+        position: relative;
+        margin-left: 20px;
+        width: 75px;
+    }
+    @media screen and (max-width: 520px) {
+        .theme-toggle-container {
+            margin-right: 1em;
+        }
+    }
+</style>
+
+<nav>
+    <HeaderLink href="/">Home</HeaderLink>
+    <HeaderLink href="/pets">Projects</HeaderLink>
+    <!-- <HeaderLink href="/blog">Blog</HeaderLink> -->
+    <HeaderLink href="/about">About</HeaderLink>
+    <div class="theme-toggle-container">
+        <ThemeIcon />
+    </div>
+</nav>

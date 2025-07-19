@@ -1,0 +1,16 @@
+{
+    "name": "Yet Another Peer‑to‑Peer Network",
+    "stack": [
+        "Rust"
+    ],
+    "description": "Library that proposes a new P2P network topology that enables users to connect multiple devices to one peer. The topology provides an opportunity to implement distributed applications over it.",
+    "links": {
+        "github": "https://github.com/Scurrra/ya",
+        "crates": "https://crates.io/crates/yap2p",
+        "docs": "https://docs.rs/yap2p/0.1.1/yap2p"
+    },
+    "dates": [
+        "r. 2023",
+        "Present"
+    ] 
+}

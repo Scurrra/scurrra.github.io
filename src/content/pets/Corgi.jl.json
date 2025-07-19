@@ -1,0 +1,14 @@
+{
+    "name": "Corgi.jl",
+    "stack": [
+        "Julia"
+    ],
+    "description": "Machine Learning Library from scratch.",
+    "links": {
+        "github": "https://github.com/Scurrra/Corgi.jl"
+    },
+    "dates": [
+        "Jun. 2022",
+        "Present"
+    ] 
+}

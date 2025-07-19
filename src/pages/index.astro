@@ -1,0 +1,32 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<p>
+				Hi, I'm Ilja, MMCS graduate from BSU. Welcome to my personal
+				site/portfolio/blog. Here you can find a brief intro to
+				my projects. In the future I will publish some posts and how-to
+				guides to my projects.
+			</p>
+
+			<blockquote>
+				<p>
+					I'm looking for a job as Machine Learning / Software
+					Engineer. If you have some vacancies, please let me know.
+				</p>
+			</blockquote>
+		</main>
+		<Footer />
+	</body>
+</html>

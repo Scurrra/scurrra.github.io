@@ -1,0 +1,15 @@
+{
+    "name": "SimplePolynomialRing.jl",
+    "stack": [
+        "Julia"
+    ],
+    "description": "Polynomial ring with basic arithmetic, parsing, formatting, prime tests and generating. % Library is useful for error-correcting coding and was developed during a university course on the subject.",
+    "links": {
+        "github": "https://github.com/Scurrra/SimplePolynomialRing.jl",
+        "juliahub": "https://juliahub.com/ui/Packages/General/SimplePolynomialRing"
+    },
+    "dates": [
+        "Sep. 2022",
+        "Present"
+    ] 
+}

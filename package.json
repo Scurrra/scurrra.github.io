@@ -1,0 +1,21 @@
+{
+  "name": "scurrra.github.io",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.1",
+    "@astrojs/rss": "^4.0.12",
+    "@astrojs/sitemap": "^3.4.1",
+    "@astrojs/svelte": "^7.1.0",
+    "astro": "^5.12.0",
+    "sharp": "^0.34.2",
+    "svelte": "^5.36.8",
+    "typescript": "^5.8.3"
+  }
+}

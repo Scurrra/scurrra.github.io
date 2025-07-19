@@ -1,0 +1,14 @@
+{
+    "name": "cregex",
+    "stack": [
+        "C"
+    ],
+    "description": "Regular Expressions in pure C.",
+    "links": {
+        "github": "https://github.com/Scurrra/cregex"
+    },
+    "dates": [
+        "Apr. 2021",
+        "Jun. 2021"
+    ] 
+}
