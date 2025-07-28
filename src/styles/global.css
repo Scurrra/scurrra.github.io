@@ -20,7 +20,8 @@
 }
 
 :root.dark {
-	--background-body: #202122;
+	--background-body: #16161d;
+	/* --background-body: #202122; */
 	--text-main: #fff;
 	--text-secondary: #ccc;
 	--primary-color: #548e9b;
