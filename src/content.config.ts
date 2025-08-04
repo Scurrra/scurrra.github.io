@@ -31,6 +31,7 @@ const pets = defineCollection({
 			crates: z.optional(z.string().url()),
 			pypi: z.optional(z.string().url()),
 			docs: z.optional(z.string().url()),
+			plutos : z.optional(z.string().url()),
 		}),
 		dates: z.array(z.string()),
 	}),

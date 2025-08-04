@@ -1,0 +1,15 @@
+{
+    "name": "Dwarfs",
+    "stack": [
+        "Julia"
+    ],
+    "description": "A collection of Pluto.jl notebooks.",
+    "links": {
+        "github": "https://github.com/Scurrra/dwarfs/",
+        "plutos": "https://scurrra.github.io/dwarfs/"
+    },
+    "dates": [
+        "Nov. 2024",
+        "Present"
+    ] 
+}

@@ -119,6 +119,13 @@ const pets = await getCollection("pets");
                                             </a>
                                         </h5>
                                     )}
+                                    {project.data.links.plutos && (
+                                        <h5>
+                                            <a href={project.data.links.plutos}>
+                                                pluto notebook
+                                            </a>
+                                        </h5>
+                                    )}
                                     {project.data.links.juliahub && (
                                         <h5>
                                             <a href={project.data.links.juliahub}>
