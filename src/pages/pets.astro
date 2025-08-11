@@ -154,6 +154,13 @@ const pets = await getCollection("pets");
                                             </a>
                                         </h5>
                                     )}
+                                    {project.data.links.guide && (
+                                        <h5>
+                                            <a href={project.data.links.guide}>
+                                                guide
+                                            </a>
+                                        </h5>
+                                    )}
                                 </div>
                                 <h3 class="description">
                                     {project.data.description}
