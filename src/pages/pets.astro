@@ -94,7 +94,7 @@ const pets = await getCollection("pets");
                         pets.map((project) => (
                             <li>
                                 <a href={project.data.links.github}>
-                                    <h1 class="title">{project.data.name}</h1>
+                                    <h1 class="title">#{project.data.name}</h1>
                                 </a>
 
                                 <div class="info">
@@ -162,9 +162,9 @@ const pets = await getCollection("pets");
                                         </h5>
                                     )}
                                 </div>
-                                <h3 class="description">
+                                <p class="description">
                                     {project.data.description}
-                                </h3>
+                                </p>
                             </li>
                         ))
                     }
