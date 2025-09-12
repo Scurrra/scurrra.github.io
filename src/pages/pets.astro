@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import { getCollection } from "astro:content";
+import PetTile from "../components/PetTile.astro";
 
 const pets = await getCollection("pets");
 ---
@@ -93,78 +94,7 @@ const pets = await getCollection("pets");
                     {
                         pets.map((project) => (
                             <li>
-                                <a href={project.data.links.github}>
-                                    <h1 class="title">#{project.data.name}</h1>
-                                </a>
-
-                                <div class="info">
-                                    <h4 class="stack">
-                                        {project.data.stack.join(", ")}
-                                    </h4>
-                                    <p class="date">
-                                        {project.data.dates[0]} -
-                                        {project.data.dates[1]}
-                                    </p>
-                                </div>
-                                <div class="links">
-                                    <h5>
-                                        <a href={project.data.links.github}>
-                                            github repo
-                                        </a>
-                                    </h5>
-                                    {project.data.links.colab && (
-                                        <h5>
-                                            <a href={project.data.links.colab}>
-                                                google colab
-                                            </a>
-                                        </h5>
-                                    )}
-                                    {project.data.links.plutos && (
-                                        <h5>
-                                            <a href={project.data.links.plutos}>
-                                                pluto notebook
-                                            </a>
-                                        </h5>
-                                    )}
-                                    {project.data.links.juliahub && (
-                                        <h5>
-                                            <a href={project.data.links.juliahub}>
-                                                juliahub
-                                            </a>
-                                        </h5>
-                                    )}
-                                    {project.data.links.crates && (
-                                        <h5>
-                                            <a href={project.data.links.crates}>
-                                                crates.io
-                                            </a>
-                                        </h5>
-                                    )}
-                                    {project.data.links.pypi && (
-                                        <h5>
-                                            <a href={project.data.links.pypi}>
-                                                pypi
-                                            </a>
-                                        </h5>
-                                    )}
-                                    {project.data.links.docs && (
-                                        <h5>
-                                            <a href={project.data.links.docs}>
-                                                docs
-                                            </a>
-                                        </h5>
-                                    )}
-                                    {project.data.links.guide && (
-                                        <h5>
-                                            <a href={project.data.links.guide}>
-                                                guide
-                                            </a>
-                                        </h5>
-                                    )}
-                                </div>
-                                <p class="description">
-                                    {project.data.description}
-                                </p>
+                                <PetTile project={project} />
                             </li>
                         ))
                     }
