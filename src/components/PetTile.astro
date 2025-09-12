@@ -2,78 +2,95 @@
 const { project } = Astro.props;
 ---
 
-<a href={project.data.links.github}>
-    <h1 class="title">#{project.data.name}</h1>
-</a>
-
-<div class="info">
-    <h4 class="stack">
-        {project.data.stack.join(", ")}
-    </h4>
-    <p class="date">
-        {project.data.dates[0]} -
-        {project.data.dates[1]}
-    </p>
+<div class="tile-container">
+<li>
+        <a href={project.data.links.github}>
+            <h1 class="title">#{project.data.name}</h1>
+        </a>
+        <div class="info">
+            <h4 class="stack">
+                {project.data.stack.join(", ")}
+            </h4>
+            <p class="date">
+                {project.data.dates[0]} -
+                {project.data.dates[1]}
+            </p>
+        </div>
+        <div class="links">
+            <h5>
+                <a href={project.data.links.github}> github repo </a>
+            </h5>
+            {
+                project.data.links.colab && (
+                    <h5>
+                        <a href={project.data.links.colab}>google colab</a>
+                    </h5>
+                )
+            }
+            {
+                project.data.links.plutos && (
+                    <h5>
+                        <a href={project.data.links.plutos}>pluto notebook</a>
+                    </h5>
+                )
+            }
+            {
+                project.data.links.juliahub && (
+                    <h5>
+                        <a href={project.data.links.juliahub}>juliahub</a>
+                    </h5>
+                )
+            }
+            {
+                project.data.links.crates && (
+                    <h5>
+                        <a href={project.data.links.crates}>crates.io</a>
+                    </h5>
+                )
+            }
+            {
+                project.data.links.pypi && (
+                    <h5>
+                        <a href={project.data.links.pypi}>pypi</a>
+                    </h5>
+                )
+            }
+            {
+                project.data.links.docs && (
+                    <h5>
+                        <a href={project.data.links.docs}>docs</a>
+                    </h5>
+                )
+            }
+            {
+                project.data.links.guide && (
+                    <h5>
+                        <a href={project.data.links.guide}>guide</a>
+                    </h5>
+                )
+            }
+        </div>
+        <p class="description">
+            {project.data.description}
+        </p>
+    </li>
 </div>
-<div class="links">
-    <h5>
-        <a href={project.data.links.github}> github repo </a>
-    </h5>
-    {
-        project.data.links.colab && (
-            <h5>
-                <a href={project.data.links.colab}>google colab</a>
-            </h5>
-        )
-    }
-    {
-        project.data.links.plutos && (
-            <h5>
-                <a href={project.data.links.plutos}>pluto notebook</a>
-            </h5>
-        )
-    }
-    {
-        project.data.links.juliahub && (
-            <h5>
-                <a href={project.data.links.juliahub}>juliahub</a>
-            </h5>
-        )
-    }
-    {
-        project.data.links.crates && (
-            <h5>
-                <a href={project.data.links.crates}>crates.io</a>
-            </h5>
-        )
-    }
-    {
-        project.data.links.pypi && (
-            <h5>
-                <a href={project.data.links.pypi}>pypi</a>
-            </h5>
-        )
-    }
-    {
-        project.data.links.docs && (
-            <h5>
-                <a href={project.data.links.docs}>docs</a>
-            </h5>
-        )
-    }
-    {
-        project.data.links.guide && (
-            <h5>
-                <a href={project.data.links.guide}>guide</a>
-            </h5>
-        )
-    }
-</div>
-<p class="description">
-    {project.data.description}
-</p>
 
 <style>
+    .tile-container {
+        width: calc(90% - 1rem);
+        border: 1px solid rgb(var(--text-main));
+        border-radius: 8px;
+        padding: 1rem;
+        margin: 1rem;
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.42);
+        backdrop-filter: blur(13px);
+    }
+    .tile-container * {
+        text-decoration: none;
+        transition: 0.2s ease;
+    }
+
     .info {
         float: left;
         width: 48%;
@@ -85,7 +102,7 @@ const { project } = Astro.props;
     }
     .title {
         margin: 0;
-        color: rgb(var(--black));
+        /* color: rgb(var(--black)); */
         line-height: 1;
     }
     .date {
@@ -108,8 +125,9 @@ const { project } = Astro.props;
         box-shadow: var(--box-shadow);
     }
     @media (max-width: 720px) {
-        gap: 0.5em;
-        width: 100%;
+        .tile-container {
+            width: 100%;
+        }
     }
     @media (max-width: 1020px) {
         .info {

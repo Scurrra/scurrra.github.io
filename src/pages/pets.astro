@@ -32,35 +32,6 @@ const pets = await getCollection("pets");
                 text-decoration: none;
                 transition: 0.2s ease;
             }
-            /* ul li div {
-                display: block;
-            } */
-            .info {
-                float: left;
-                width: 48%;
-            }
-            .links {
-                float: right;
-                width: 42%;
-                text-align: right;
-            }
-            .title {
-                margin: 0;
-                color: rgb(var(--black));
-                line-height: 1;
-            }
-            .date {
-                margin: 0;
-                color: rgb(var(--gray));
-                text-align: left;
-            }
-            .stack {
-                margin-top: 0.5em;
-            }
-            .description {
-                width: 100%;
-                float: left;
-            }
             ul li a:hover h4,
             ul li a:hover .date {
                 color: rgb(var(--accent));
@@ -76,14 +47,6 @@ const pets = await getCollection("pets");
                     width: 100%;
                 }
             }
-            @media (max-width: 1020px) {
-                .info {
-                    width: 98%;
-                }
-                .links {
-                    display: none;
-                }
-            }
         </style>
     </head>
     <body>
@@ -91,13 +54,7 @@ const pets = await getCollection("pets");
         <main>
             <section>
                 <ul>
-                    {
-                        pets.map((project) => (
-                            <li>
-                                <PetTile project={project} />
-                            </li>
-                        ))
-                    }
+                    {pets.map((project) => <PetTile project={project} />)}
                 </ul>
             </section>
         </main>
