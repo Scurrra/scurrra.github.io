@@ -3,7 +3,7 @@ const { project } = Astro.props;
 ---
 
 <div class="tile-container">
-<li>
+    <li>
         <a href={project.data.links.github}>
             <h1 class="title">#{project.data.name}</h1>
         </a>
@@ -77,20 +77,6 @@ const { project } = Astro.props;
 </div>
 
 <style>
-    .tile-container {
-        width: calc(90% - 1rem);
-        border: 1px solid rgb(var(--text-main));
-        border-radius: 8px;
-        padding: 1rem;
-        margin: 1rem;
-        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.42);
-        backdrop-filter: blur(13px);
-    }
-    .tile-container * {
-        text-decoration: none;
-        transition: 0.2s ease;
-    }
-
     .info {
         float: left;
         width: 48%;
@@ -123,11 +109,6 @@ const { project } = Astro.props;
     }
     a:hover img {
         box-shadow: var(--box-shadow);
-    }
-    @media (max-width: 720px) {
-        .tile-container {
-            width: 100%;
-        }
     }
     @media (max-width: 1020px) {
         .info {

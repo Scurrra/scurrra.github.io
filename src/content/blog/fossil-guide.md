@@ -4,6 +4,8 @@ description: 'Example of a simple Web API in Crystal with Fossil.cr.'
 pubDate: 'Aug 11 2025'
 ---
 
+> [Medium.com edition](https://medium.com/@iljabarouski/fossil-web-api-guide-fb44661a2d4b)
+
 Here is an example Web API in Crystal. Crystal itself provides all needed primitives for writing APIs, but some functionality has to be implemented. For these purpose many shards (Crystal-lang packages) exist.
 
 When learning Crystal, I decided to create my own -- [Fossil.cr](https://scurrra.github.io/fossil/). The framework is inspired by [FastAPI](https://fastapi.tiangolo.com/): simple server and endpoints creation via Crystal's metaprogramming primitives. Now let's look at how to grow fossils.
