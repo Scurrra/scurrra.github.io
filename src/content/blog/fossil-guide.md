@@ -131,7 +131,7 @@ def post_a_file(
 end
 ```
 
-## Body parameter
+## Body parameters
 
 An endpoint can have only one body parameter, so its name means nothing for us. Method's argument should be annotated with `@[Fossil::Param::Body]`. If a request has `Content-Type` "application/json" its body is automatically deserialized. Other content types should be passed to the endpoint function as a string and be parsed manually.
 
