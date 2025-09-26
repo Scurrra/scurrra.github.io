@@ -1,5 +1,5 @@
 ---
-title: 'UBPE Tokenizers. Creating a BPE tokenier from scratch. Part 1'
+title: 'UBPE Tokenizers. Creating a BPE tokenizer from scratch. Part 1'
 description: 'Guide to creating a byte-pair encoding tokenizer from scratch'
 pubDate: 'Sep 26 2025'
 ---
@@ -166,7 +166,7 @@ corpus = [
 
 ## Optional: Rearrange tokens and trim vocabulary
 
-Let's describe an algorithm for rarranging.
+Let's describe an algorithm for rearranging.
 
 1. Sort backward mapping according to tokens weights from lowest to highest:
 ```python

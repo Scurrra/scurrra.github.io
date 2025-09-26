@@ -1,5 +1,5 @@
 ---
-title: 'UBPE Tokenizers. Creating a BPE tokenier from scratch. Part 2'
+title: 'UBPE Tokenizers. Creating a BPE tokenizer from scratch. Part 2'
 description: 'Guide to creating a byte-pair encoding tokenizer from scratch'
 pubDate: 'Sep 26 2025'
 ---
@@ -107,13 +107,13 @@ for key, value in tokens_mapper["forward"].items():
 > The implementation of the tree can be found [here](https://github.com/Scurrra/ubpe-native/blob/master/ubpe_native/utils.py).
 
 Now, let's discuss an encoding algorithm:
-1. Like in classic, obtain an inner representation of a sequence.
+    1. Like in classic, obtain an inner representation of a sequence.
 ```python
 # as keys in `lookup` are tuples, `doc` also should be a tuple
 doc = tuple(alphabet[token] for token in doc)
 ```
 
-2. Build the initial search stack: at the beginning of `doc` find all possible subsequences in `lookup`, choose the longest one and proceed searching from the very next element from this subsequence until `doc` ends:
+1. Build the initial search stack: at the beginning of `doc` find all possible subsequences in `lookup`, choose the longest one and proceed searching from the very next element from this subsequence until `doc` ends:
 ```python
 start = 0
 stacks = []
@@ -123,7 +123,7 @@ while start < len(doc):
     start += len(stack[-1][0])
 ```
 
-3. Build the graph (directed, without cycles), where all possible paths from the start to the end is a variant of encoded sequence (so it's not a bijection). To do so, on each step we pop the top element from the stack, add each subsequence as edges to the node with value equal to start position of the subsequence, and if the node that starts after the subsequence was not already built, add a lookup result for that position to the stack.
+2. Build the graph (directed, without cycles), where all possible paths from the start to the end is a variant of encoded sequence (so it's not a bijection). To do so, on each step we pop the top element from the stack, add each subsequence as edges to the node with value equal to start position of the subsequence, and if the node that starts after the subsequence was not already built, add a lookup result for that position to the stack.
 
 > More correct name for this data structure can be a finite state machine, but the directed graph without cycles is also okay.
 
@@ -156,7 +156,7 @@ for start in nodes_to_delete:
     del nodes[start]
 ```
 
-4. The final step is to find all possible paths. Actually, no one ever should search for all paths, but for `top_n`, which is `1` by default. Top paths, or most valuable ones are that with highest tf-idf metric (this is why `tokens_weights` are idfs of tokens). As stated above, `nodes` is very big as it contains all possible paths, and it can not be reduced without possible losses. Traversal of `nodes` with recursion exceeds depth limits, so the only way is to dynamically build paths from the end and keep `top_n` paths from each start.
+3. The final step is to find all possible paths. Actually, no one ever should search for all paths, but for `top_n`, which is `1` by default. Top paths, or most valuable ones are that with highest tf-idf metric (this is why `tokens_weights` are idfs of tokens). As stated above, `nodes` is very big as it contains all possible paths, and it can not be reduced without possible losses. Traversal of `nodes` with recursion exceeds depth limits, so the only way is to dynamically build paths from the end and keep `top_n` paths from each start.
 ```python
 # starts of each node, but from the end
 starts = sorted(nodes.keys(), reverse=True)
