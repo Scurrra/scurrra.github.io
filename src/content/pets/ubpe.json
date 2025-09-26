@@ -1,0 +1,16 @@
+{
+    "name": "Universal Byte-Pair Encoding",
+    "stack": [
+        "Python"
+    ],
+    "description": "Universal Byte-Pair Encoding --- BPE that is designed for using on general sequences (like quantized signal and texts). The package provides *optimized* classic implementation of BPE that can be used on general sequences, and novel implementation that allows you to choose between multiple variants of encodings with top n possible tf-idf scores.",
+    "links": {
+        "github": "https://github.com/Scurrra/ubpe",
+        "pypi": "https://pypi.org/project/ubpe",
+        "guide": "https://scurrra.github.io/blog/ubpe-tokenizers-i/"
+    },
+    "dates": [
+        "Jun. 2025",
+        "Present"
+    ] 
+}
