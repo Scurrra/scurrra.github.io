@@ -4,6 +4,8 @@ description: 'Guide to creating a byte-pair encoding tokenizer from scratch'
 pubDate: 'Sep 26 2025'
 ---
 
+> [Medium.com edition](https://medium.com/@iljabarouski/ubpe-tokenizers-creating-a-bpe-tokenizer-from-scratch-part-1-0bdfe45783f0)
+
 When writing my master's thesis I thought it would be a great idea to compress a 1D signal by tokenizing it. Storing and transferring the compressed signal together with the tokenizer's vocabulary should be much cheaper than the long signal itself, right? The problem was that all guides and packages I found are specializing on text tokenization. So I decided to create my own.
 
 # Idea of the algorithm

@@ -4,6 +4,8 @@ description: 'Guide to creating a byte-pair encoding tokenizer from scratch'
 pubDate: 'Sep 26 2025'
 ---
 
+> [Medium.com edition](https://medium.com/@iljabarouski/ubpe-tokenizers-creating-a-bpe-tokenizer-from-scratch-part-2-8f26aa9a1b04)
+
 > For tokenizer fitting algorithm see [the 1st part](https://scurrra.github.io/blog/ubpe-tokenizers-i/).
 
 In this part I will describe how to encode sequences using the fitted tokenizer and decode them back.
