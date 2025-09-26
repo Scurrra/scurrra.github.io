@@ -243,8 +243,8 @@ tokens_mapper = {
 
 # Conclusion
 
-In this article we described how to create byte-pair tokenizer from scratch with some optimizations. In the next article we will discuss how to use it for encoding the initial sequences into sequences of tokens and decode them back.
+In this article we described how to create byte-pair tokenizer from scratch with some optimizations. In [the next article](https://scurrra.github.io/blog/ubpe-tokenizers-ii/) we will discuss how to use it for encoding the initial sequences into sequences of tokens and decode them back.
 
 > The algorithm is published as a package on PyPI and can be installed via [`pip install ubpe[native]`](https://pypi.org/project/ubpe/).
 
-> P.S. the package is splitted into realizations and wrapper for import, now only `ubpe-native` is available as the `native` feature of `ubpe`.
+> P.S. the package is splitted into realizations and wrapper for import, now only [`ubpe-native`](https://github.com/Scurrra/ubpe-native) is available as the `native` feature of [`ubpe`](https://github.com/Scurrra/ubpe).
