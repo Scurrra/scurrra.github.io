@@ -105,6 +105,8 @@ end
 
 In this example query parameter in the URL can be `starts_with`, `stw`, and `start`.
 
+> Parameters annotated with `@[Fossil::Param::Query]` can have default values.
+
 ## Form parameters
 
 Form parameters differs from query parameters only in annotation name -- `@[Fossil::Param::Form]`. In request form parameters are specified with `Content-Type` set to either "application/x-www-form-urlencoded" or "multipart/form-data".
@@ -118,6 +120,8 @@ def post_a_form(
   return text
 end
 ```
+
+> Parameters annotated with `@[Fossil::Param::Form]` can have default values.
 
 ## File parameters
 
