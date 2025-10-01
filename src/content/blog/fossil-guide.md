@@ -173,6 +173,53 @@ def build_houses(
 end
 ```
 
+# Dependencies
+
+Dependencies can be considered as parameters that are obtained non-directly and are required for an API endpoint function to be executed. For example, one can use dependencies for checking if the user is admin or to pass database session instance to an endpoint function.
+
+`Fossil` provides two main types of dependencies:
+ - `Fossil::Param::HeaderDep` and `Fossil::Param::CookieDep` take one positional parameter -- header or cookie name -- and pass it to a constructor of a type of the annotated argument. This means that this type can be constructed from a single string:
+```crystal
+class User
+  include JSON::Serializable
+
+  def initialize(token : String)
+    # initialization goes here
+  end
+end
+
+@[GET(server.root / "route_7/cookie_dep")]
+def cookie_dep(
+  @[Fossil::Param::CookieDep("Authentification")]
+  user : User,
+)
+  return user
+end
+
+@[GET(server.root / "route_7/header_dep")]
+def header_dep(
+  @[Fossil::Param::HeaderDep("Authentification")]
+  user : User,
+)
+  return user
+end
+```
+
+ - `Fossil::Param::GhostDep` takes no arguments and doesn't check anything, just creates an instance of type you want with default parameters (no parameters passed to the `.new` method). It is useful for singletons or for yielding a database session. To use it just add an annotated method argument `@[Fossil::Param::GhostDep] <param_name> : <param_type>`, for example:
+```crystal
+@[GET(server.root / "route_7/ghost_dep")]
+def ghost_dep(
+  @[Fossil::Param::GhostDep] 
+  db : DBSession,
+  @[Fossil::Param::HeaderDep("Authentification")]
+  user : User,
+)
+  return user
+end
+```
+
+> As all parameters of the method are parsed from the request, parameters that are not annotated do not allow your code to compile. The only option to still have them is to mark them with `@[Fossil::Param::GhostDep]` annotation.
+
 # Running a server
 
 As `Fossil::Server` is a wrapper around `HTTP::Server`, for convenience and ease of use some methods can be called on a wrapper: `.bind` to `String` and `URI`, `.listen` to host and port, port or to bound address, and `.close`. So the created server can be run by
