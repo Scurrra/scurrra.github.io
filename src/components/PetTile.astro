@@ -5,7 +5,7 @@ const { project } = Astro.props;
 <div class="tile-container">
     <li>
         <a href={project.data.links.github}>
-            <h1 class="title">#{project.data.name}</h1>
+            <h2 class="title">#{project.data.name}</h2>
         </a>
         <div class="info">
             <h4 class="stack">
@@ -70,9 +70,12 @@ const { project } = Astro.props;
                 )
             }
         </div>
-        <p class="description">
-            {project.data.description}
-        </p>
+        <div class="description">
+            <details>
+                <summary>{project.data.short_description}</summary>
+                <p>{project.data.description}</p>
+            </details>
+        </div>
     </li>
 </div>
 

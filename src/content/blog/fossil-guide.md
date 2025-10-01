@@ -2,6 +2,7 @@
 title: 'Fossil Web API Guide'
 description: 'Example of a simple Web API in Crystal with Fossil.cr.'
 pubDate: 'Aug 11 2025'
+updateDate: 'Oct 01 2025'
 ---
 
 > [Medium.com edition](https://medium.com/@iljabarouski/fossil-web-api-guide-fb44661a2d4b)

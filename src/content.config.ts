@@ -22,6 +22,8 @@ const pets = defineCollection({
 	schema: z.object({
 		// hardcoded_id: z.number(),
 		name: z.string(),
+		is_pinned: z.optional(z.boolean()),
+		short_description: z.string(),
 		description: z.string(),
 		stack: z.array(z.string()),
 		links: z.object({
@@ -34,7 +36,7 @@ const pets = defineCollection({
 			plutos : z.optional(z.string().url()),
 			guide : z.optional(z.string().url()),
 		}),
-		dates: z.array(z.string()),
+		dates: z.tuple([z.string(), z.string()]),
 	}),
 });
 

@@ -1,8 +1,10 @@
 {
     "name": "Fossil.cr",
+    "is_pinned": true,
     "stack": [
         "Crystal"
     ],
+    "short_description": "Smol REST API framework.",
     "description": "A framework for developing REST APIs in Crystal influenced by FastAPI. Shard (a package of Crystal code) provides an `HTTP::Server' wrapper with a nice endpoints' handler. Good utilization of all abilities of Crystal's macro system allows users to forget about operating directly on requests and responses by generating this complex code from user-defined methods.",
     "links": {
         "github": "https://github.com/Scurrra/fossil",
@@ -10,7 +12,7 @@
         "guide": "https://scurrra.github.io/blog/fossil-guide"
     },
     "dates": [
-        "Jul. 2025",
+        "Jul 2025",
         "Present"
     ] 
 }

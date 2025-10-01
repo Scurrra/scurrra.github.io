@@ -3,12 +3,13 @@
     "stack": [
         "C"
     ],
-    "description": "Regular Expressions in pure C.",
+    "short_description": "Regular Expressions in pure C.",
+    "description": "Regular Expressions library in pure C. RegExes are compiled into finite state machines and can be reused for multiple queries.",
     "links": {
         "github": "https://github.com/Scurrra/cregex"
     },
     "dates": [
-        "Apr. 2021",
-        "Jun. 2021"
+        "Apr 2021",
+        "Jun 2021"
     ] 
 }

@@ -3,6 +3,7 @@
     "stack": [
         "Rust"
     ],
+    "short_description": "Nultipurpose p2p network with novel topology.",
     "description": "Library that proposes a new P2P network topology that enables users to connect multiple devices to one peer. The topology provides an opportunity to implement distributed applications over it.",
     "links": {
         "github": "https://github.com/Scurrra/ya",
@@ -10,7 +11,7 @@
         "docs": "https://docs.rs/yap2p/0.1.1/yap2p"
     },
     "dates": [
-        "Mar. 2023",
+        "Mar 2023",
         "Present"
     ] 
 }

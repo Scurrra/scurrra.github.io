@@ -3,12 +3,13 @@
     "stack": [
         "Julia"
     ],
-    "description": "Machine Learning Library from scratch.",
+    "short_description": "Machine Learning Library in Julia.",
+    "description": "Machine Learning Library from scratch. Provides data normalization methods, many optimization methods, linear models, decision trees, and clusterization algorithms.",
     "links": {
         "github": "https://github.com/Scurrra/Corgi.jl"
     },
     "dates": [
-        "Jun. 2022",
+        "Jun 2022",
         "Present"
-    ] 
+    ]
 }

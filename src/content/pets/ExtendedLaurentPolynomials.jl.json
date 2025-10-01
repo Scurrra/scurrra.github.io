@@ -3,13 +3,14 @@
     "stack": [
         "Julia"
     ],
+    "short_description": "Laurent polynomials in Julia.",
     "description": "Laurent polynomials with basic arithmetic, evaluation and substitution. Library is useful for wavelet analysis and was developed during a university course on the subject.",
     "links": {
         "github": "https://github.com/Scurrra/ExtendedLaurentPolynomials.jl",
         "juliahub": "https://juliahub.com/ui/Packages/General/ExtendedLaurentPolynomials"
     },
     "dates": [
-        "Sep. 2022",
+        "Sep 2022",
         "Present"
     ]
 }

@@ -3,13 +3,14 @@
     "stack": [
         "Julia"
     ],
-    "description": "A collection of Pluto.jl notebooks.",
+    "short_description": "A collection of Pluto.jl notebooks.",
+    "description": "Little Julia projects and guides in Pluto.jl notebooks.",
     "links": {
         "github": "https://github.com/Scurrra/dwarfs/",
         "plutos": "https://scurrra.github.io/dwarfs/"
     },
     "dates": [
-        "Nov. 2024",
+        "Nov 2024",
         "Present"
     ] 
 }

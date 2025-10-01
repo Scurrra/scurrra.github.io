@@ -5,8 +5,15 @@ import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import { getCollection } from "astro:content";
 import PetTile from "../components/PetTile.astro";
+import { undefined, ZodUndefined } from "astro:schema";
 
-const pets = await getCollection("pets");
+const pinned_pets = await getCollection("pets", ({ data }) =>
+    data.is_pinned?.valueOf(),
+);
+const rest_pets = await getCollection(
+    "pets",
+    ({ data }) => !data.is_pinned?.valueOf(),
+);
 ---
 
 <!doctype html>
@@ -52,9 +59,23 @@ const pets = await getCollection("pets");
     <body>
         <Header />
         <main>
+            <blockquote>
+                Programming languages are just insruments. Why choose the
+                universal one, when you can choose the better suited one each
+                time?
+            </blockquote>
             <section>
                 <ul>
-                    {pets.map((project) => <PetTile project={project} />)}
+                    {
+                        pinned_pets.map((project) => (
+                            <PetTile project={project} />
+                        ))
+                    }
+                </ul>
+            </section>
+            <section>
+                <ul>
+                    {rest_pets.map((project) => <PetTile project={project} />)}
                 </ul>
             </section>
         </main>

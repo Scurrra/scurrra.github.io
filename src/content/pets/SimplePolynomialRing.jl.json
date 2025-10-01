@@ -3,13 +3,14 @@
     "stack": [
         "Julia"
     ],
+    "short_description": "Polynomial rings in Julia.",
     "description": "Polynomial ring with basic arithmetic, parsing, formatting, prime tests and generating.",
     "links": {
         "github": "https://github.com/Scurrra/SimplePolynomialRing.jl",
         "juliahub": "https://juliahub.com/ui/Packages/General/SimplePolynomialRing"
     },
     "dates": [
-        "Sep. 2022",
+        "Sep 2022",
         "Present"
     ] 
 }
