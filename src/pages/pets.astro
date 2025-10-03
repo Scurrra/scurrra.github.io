@@ -5,7 +5,7 @@ import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import { getCollection } from "astro:content";
 import PetTile from "../components/PetTile.astro";
-import { undefined, ZodUndefined } from "astro:schema";
+import { ZodUndefined } from "astro:schema";
 
 const pinned_pets = await getCollection("pets", ({ data }) =>
     data.is_pinned?.valueOf(),
