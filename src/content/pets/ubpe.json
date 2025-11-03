@@ -2,9 +2,9 @@
     "name": "UBPE",
     "is_pinned": true,
     "stack": [
-        "Universal Byte-Pair Encoding"
+        "Python"
     ],
-    "short_description": "BPE for general sequences (strings still supported).",
+    "short_description": "Byte-Pair Encoding for general sequences (strings still supported).",
     "description": "Universal Byte-Pair Encoding --- BPE that is designed for using on general sequences (like quantized signal and texts). The package provides *optimized* classic implementation of BPE that can be used on general sequences, and novel implementation that allows you to choose between multiple variants of encodings with top n possible tf-idf scores.",
     "links": {
         "github": "https://github.com/Scurrra/ubpe",
