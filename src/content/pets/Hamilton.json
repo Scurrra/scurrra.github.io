@@ -8,7 +8,8 @@
     "description": "A framework for developing Telegram Bots in Crystal. Supports handling of specified commands, known text messages, and many types of messages' payloads, such as stickers, videos, animations (gifs), etc.",
     "links": {
         "github": "https://github.com/Scurrra/hamilton",
-        "docs": "https://scurrra.github.io/hamilton"
+        "docs": "https://scurrra.github.io/hamilton",
+        "guide": "https://scurrra.github.io/blog/hamilton-guide"
     },
     "dates": [
         "Sep 2025",

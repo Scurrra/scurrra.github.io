@@ -4,19 +4,19 @@ description: 'Example of a simple Telegram Bot with Hamilton.cr.'
 pubDate: 'Nov 02 2025'
 ---
 
-<!-- > [Medium.com edition](https://medium.com/@iljabarouski/fossil-web-api-guide-fb44661a2d4b) -->
+> [Medium.com edition](https://medium.com/@iljabarouski/hamilton-cr-telegram-bot-api-wrapper-for-crystal-5a9de45f0e28)
 
 > I have a hard time naming my projects. This time I was looking for something that combined airplanes (a paper airplane from the Telegram logo) and crystals. And the name Hamilton came to mind &mdash; the name of the airport near the Great Barrier Reef [^1].
 [^1]: Yes, I know that corals are not crystals, but corals *contain* crystals. 
 
-Crystal lang has a powerful macro programming system, so I decided to do some funny and useful things with it. [Last time](http://localhost:4321/blog/fossil-guide/) I made [Fossil.cr](https://github.com/Scurrra/fossil) &mdash; a simple Web API framework. After that I decided that it would be entertaining[^2] to build a Telegram Bot API wrapper for Crystal, because [there were not any](https://core.telegram.org/bots/samples). 
+Crystal lang has a powerful macro programming system, so I decided to do some funny and useful things with it. [Last time](https://scurrra.github.io/blog/fossil-guide/) I made [Fossil.cr](https://github.com/Scurrra/fossil) &mdash; a simple Web API framework. After that I decided that it would be entertaining[^2] to build a Telegram Bot API wrapper for Crystal, because [there were not any](https://core.telegram.org/bots/samples). 
 [^2]: *It was not entertaining most of the time.* I didn't want to scrap [the Bot API reference](https://core.telegram.org/bots/api), so I spent some time creating all the types and a huge constant dictionary of methods, from which methods were actually generated.
 
 So, in this article I want to present a *simple* shard for creating Telegram bots. The interface is even simpler than in Fossil, the functionality is easily extendable with custom handlers, though the provided handler is great itself (I really like it).
 
 # Creating a Telegram Bot
 
-To create and manage bots [`@BotFather`](https://t.me/BotFather) bot is used. The command we need is `/newbot`: just send this command to the bot and creation flow will begin. You will need to choose a display name for your bot and a username like `@<bot_-name>_bot`. At the end `@BotFather` will return you a message containing a token needed to access HTTP API.
+To create and manage bots [`@BotFather`](https://t.me/BotFather) bot is used. The command we need is `/newbot`: just send this command to the bot and creation flow will begin. You will need to choose a display name for your bot and a username like `@<bot_name>_bot`. At the end `@BotFather` will return you a message containing a token needed to access HTTP API.
 
 # [`Hamilton::Api`](https://scurrra.github.io/hamilton/Hamilton/Api.html)
 
