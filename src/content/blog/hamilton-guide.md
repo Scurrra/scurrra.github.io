@@ -232,9 +232,8 @@ Now, the problem is with `CmdHandler`: it gives an opportunity to store some dat
  - it implicitly creates a `/signal` command, so the developer can not;
  - it requires the developer to add `signal : Channel(Signal)` argument to each method (type is optional, it is easily inferred by the compiler), and then the update is passed to the next handler in the chain;
  - when handler gets an update, it creates a channel to communicate with the method, and passes it as the `signal` argument;
- - if the channel is already here, it means that an old update from the same chat (in most cases) is handled now. In this case, `Signal::TSTP`[^4] is passed to the method through the channel ([`Signal`](https://crystal-lang.org/api/1.18.2/Signal.html) is a built-in type to safely handle inter-process signals on POSIX systems, and for consistence it is chosen for communication between a user and the bot, even implicitly);
- - if the user sends `/signal` command, its argument is parsed as `Signal` type and passed to the method as is. 
-[^4]: According to the Wikipedia, "The SIGTSTP signal is sent to a process by its controlling terminal to request it to stop (terminal stop). It is commonly initiated by the user pressing Ctrl+Z. Unlike SIGSTOP, the process can register a signal handler for, or ignore, the signal".
+ - if the channel is already here, it means that an old update from the same chat (in most cases) is handled now. In this case, [`Signal::TSTP`](https://en.wikipedia.org/wiki/Signal_(IPC)#SIGTSTP) is passed to the method through the channel ([`Signal`](https://crystal-lang.org/api/1.18.2/Signal.html) is a built-in type to safely handle inter-process signals on POSIX systems, and for consistence it is chosen for communication between a user and the bot, even implicitly);
+ - if the user sends `/signal` command, its argument is parsed as `Signal` type and passed to the method as is.
 
 Yes, I understand, that it's too complicated for a regular bot user, but:
 1. the developer is not forced to inform the user about their ability to send `/signal` commands to the bot;
