@@ -2,6 +2,7 @@
 title: 'Hamilton.cr, Telegram Bot API wrapper for Crystal'
 description: 'Example of a simple Telegram Bot with Hamilton.cr.'
 pubDate: 'Nov 02 2025'
+updateDate: 'Nov 07 2025'
 ---
 
 > [Medium.com edition](https://medium.com/@iljabarouski/hamilton-cr-telegram-bot-api-wrapper-for-crystal-5a9de45f0e28)
@@ -58,11 +59,11 @@ end
 bot.listen
 ```
 
-> `Hamilton::Bot.new` also needs a `handler` parameter (basically there are many [constructors](https://scurrra.github.io/hamilton/Hamilton/Bot.html#constructors), but logic is the same). `Hamilton::Handler` is a module similar to [`HTTP::Handler`](https://crystal-lang.org/api/1.17.0/HTTP/Handler.html) and provides logic for chaining handlers &mdash; special classes that process updates. Hamilton.cr provides two basic handlers: `Hamilton::LogHandler` and `Hamilton::CmdHandler`.
+> `Hamilton::Bot.new` also needs a `handler` parameter (basically there are many [constructors](https://scurrra.github.io/hamilton/Hamilton/Bot.html#constructors), but logic is the same). `Hamilton::Handler` is a module similar to [`HTTP::Handler`](https://crystal-lang.org/api/1.18.2/HTTP/Handler.html) and provides logic for chaining handlers &mdash; special classes that process updates. Hamilton.cr provides two basic handlers: `Hamilton::LogHandler` and `Hamilton::CmdHandler`.
 
 # [`Hamilton::LogHandler`](https://scurrra.github.io/hamilton/Hamilton/LogHandler.html)
 
-`Hamilton::LogHandler` wraps Crystal's [`Log`](https://crystal-lang.org/api/1.17.0/Log.html) class (so it has the same constructor parameters). This handler logs the start time of update processing (since calling the `Hamilton::LogHandler` handler), prints type of update, and time used to execute next handlers in the chain. So, it's more useful to be the first in the chain.
+`Hamilton::LogHandler` wraps Crystal's [`Log`](https://crystal-lang.org/api/1.18.2/Log.html) class (so it has the same constructor parameters). This handler logs the start time of update processing (since calling the `Hamilton::LogHandler` handler), prints type of update, and time used to execute next handlers in the chain. So, it's more useful to be the first in the chain.
 
 # [`Hamilton::CmdHandler`](https://scurrra.github.io/hamilton/Hamilton/CmdHandler.html)
 
@@ -179,7 +180,7 @@ end
 @[Handler(handler)]
 @[Handle(:animation)]
 @[For(:root, :handle_hi_text)]
-def handle_animation(animation : Hamilton::Types::Animation, context, update) # Hamilton::Types::Sticker
+def handle_animation(animation : Hamilton::Types::Animation, context, update)
   message = update.message.as(Hamilton::Types::Message)
 
   API.sendMessage(
@@ -218,6 +219,125 @@ Now, you may tell the `@BotFather` about what commands your bot can handle, and 
 3. click "Edit Bot" button;
 4. click "Edit Commands";
 5. specify commands and descriptions as `@BotFather` tells you. Keep in mind, that you should specify all the commands you want in once, even if you are just adding a new command to old ones.
+
+# Async Hamilton
+
+By default, Hamilton handles updates one by one. It means that
+1. if you have many users, each should wait for their queue;
+2. the user can not stop bot from handling their update midway.
+
+Both these issues have sense only if some updates take a lot of time to be handled. Since `v0.2.0` the bot can be compiled with flag `-Dasync` (crystal's way to pass compilation flags) to make `Bot` use crystal's powerful `Fiber`s. Basically, with this flag handling of each update is done on a separate fiber. Now, the bot can handle updates from different users at the same time.
+
+Now, the problem is with `CmdHandler`: it gives an opportunity to store some data in context, which is rewritten after each successful handling. So, when the user sends an update while the old one hasn't been handled yet, the new gets the old update? And what if the user wants to stop handling of the old update? The answer is that async `CmdHandler` has a different behavior: 
+ - it implicitly creates a `/signal` command, so the developer can not;
+ - it requires the developer to add `signal : Channel(Signal)` argument to each method (type is optional, it is easily inferred by the compiler), and then the update is passed to the next handler in the chain;
+ - when handler gets an update, it creates a channel to communicate with the method, and passes it as the `signal` argument;
+ - if the channel is already here, it means that an old update from the same chat (in most cases) is handled now. In this case, `Signal::TSTP`[^4] is passed to the method through the channel ([`Signal`](https://crystal-lang.org/api/1.18.2/Signal.html) is a built-in type to safely handle inter-process signals on POSIX systems, and for consistence it is chosen for communication between a user and the bot, even implicitly);
+ - if the user sends `/signal` command, its argument is parsed as `Signal` type and passed to the method as is. 
+[^4]: According to the Wikipedia, "The SIGTSTP signal is sent to a process by its controlling terminal to request it to stop (terminal stop). It is commonly initiated by the user pressing Ctrl+Z. Unlike SIGSTOP, the process can register a signal handler for, or ignore, the signal".
+
+Yes, I understand, that it's too complicated for a regular bot user, but:
+1. the developer is not forced to inform the user about their ability to send `/signal` commands to the bot;
+2. the developer is not forced to handle signals, only to have the `signal` argument in all the methods with `@[Handler]` annotation;
+3. regular bot users usually don't need an ability to somehow control the handling process;
+4. the `/signal` command is added for consistency: anyway there is a channel passed to the method, let's use it!
+5. I have not come up with any other solution. 
+
+And here is a very small example:
+```crystal
+require "hamilton"
+
+API = Hamilton::Api.new(token: "<YOUR-BOT-TOKEN>")
+
+handler = Hamilton::CmdHandler.new
+
+# here go some methods
+
+@[Handler(handler)]
+@[Handle(:sticker)]
+@[For(:root, :handle_hi_text)]
+def handle_sticker(sticker, context, update, signal = nil) # Hamilton::Types::Sticker
+  sticker = sticker.as(Hamilton::Types::Sticker)
+  message = update.message.as(Hamilton::Types::Message)
+
+  API.sendMessage(
+    chat_id: message.chat.id,
+    text: "Bot recieved ':sticker' message [#{sticker.file_id}]"
+  )
+
+  # just sleep, ignore all the signals sent
+  sleep 20.seconds
+
+  API.sendSticker(
+    chat_id: message.chat.id,
+    sticker: sticker.file_id
+  )
+
+  return nil
+end
+
+@[Handler(handler)]
+@[Handle(:animation)]
+@[For(:root, :handle_hi_text)]
+def handle_animation(animation : Hamilton::Types::Animation, context, update, signal)
+  message = update.message.as(Hamilton::Types::Message)
+
+  API.sendMessage(
+    chat_id: message.chat.id,
+    text: "Bot recieved ':sticker' message [#{animation.file_id}]"
+  )
+
+  10.times do
+    select
+    # if we have a signal
+    when s = signal.receive?
+      # if it is an interaption signal
+      if s == Signal::INT
+        # tell it back to the user
+        API.sendMessage(
+          chat_id: message.chat.id, 
+          text: "`Signal::INT` was received"
+        )
+        # and quit
+        return nil
+      end
+
+    # otherwise, sleep for a second
+    when timeout 1.second
+      # and tell the user, that we are sleeping
+      API.sendMessage(
+        chat_id: message.chat.id,
+        text: "Sleeping"
+      )
+    end
+  end
+
+  API.sendAnimation(
+    chat_id: message.chat.id,
+    animation: animation.file_id
+  )
+
+  return nil
+end
+
+# and here go some more methods
+
+bot = Hamilton::Bot.new(
+  api: API,
+  handlers: [
+    Hamilton::LogHandler.new, 
+    handler
+  ]
+)
+
+Signal::INT.trap do
+  bot.stop
+end
+
+bot.listen
+```
+
+Anyway, I would consider using `-Dasync` and not telling anyone about `/signal` if it's a simple bot.
 
 # Conclusion
 
