@@ -83,7 +83,7 @@ body::after {
 }
 
 main {
-	width: 720px;
+	width: 1024px;
 	max-width: calc(100% - 2em);
 	margin: auto;
 	padding: 3em 1em;
@@ -314,7 +314,7 @@ hr {
 }
 
 .tile-container {
-	width: calc(90% - 1rem);
+	width: calc(100% - 1rem);
 	border: 1px solid rgb(var(--text-main));
 	border-radius: 8px;
 	padding: 1rem;
@@ -328,7 +328,7 @@ hr {
 	transition: 0.2s ease;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 1024px) {
 	.tile-container {
 		width: 100%;
 	}
