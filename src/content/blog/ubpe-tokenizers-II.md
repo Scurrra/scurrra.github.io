@@ -2,6 +2,7 @@
 title: 'UBPE Tokenizers. Creating a BPE tokenizer from scratch. Part 2'
 description: 'Guide to creating a byte-pair encoding tokenizer from scratch'
 pubDate: 'Sep 26 2025'
+updatedDate: 'Jan 25 2026'
 ---
 
 > [Medium.com edition](https://medium.com/@iljabarouski/ubpe-tokenizers-creating-a-bpe-tokenizer-from-scratch-part-2-8f26aa9a1b04)
@@ -197,6 +198,8 @@ candidates = tails[0]
 ```
 
 > As you see, this approach allows you to choose between multiple variants of encodings. Moreover, comparison with classic approach showed that the novel produces shorter sequences.
+
+> Note: In practice, selection of top `n` elements should be optimized: if `n == 1` only the most valuable candidate is kept during selection, for greater `n` priority queue with limit is utilized for selection. 
 
 ## Decoding
 
