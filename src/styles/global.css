@@ -83,7 +83,7 @@ body::after {
 }
 
 main {
-	width: 1024px;
+	width: 768px;
 	max-width: calc(100% - 2em);
 	margin: auto;
 	padding: 3em 1em;
@@ -328,8 +328,22 @@ hr {
 	transition: 0.2s ease;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
 	.tile-container {
 		width: 100%;
+	}
+}
+
+.too-small-screen {
+	display: none;
+}
+
+@media screen and (max-width: 360px) {
+	body :not(blockquote.too-small-screen) {
+		display: none;
+	}
+
+	body blockquote.too-small-screen {
+		display: block !important;
 	}
 }

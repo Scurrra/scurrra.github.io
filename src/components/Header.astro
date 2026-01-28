@@ -8,6 +8,11 @@ const { current = "" } = Astro.props;
 <header>
 	<Nav current={current} />
 </header>
+<blockquote class="too-small-screen">
+	Contents of the site cannot be properly displayed on screens narrower than
+	360px.
+</blockquote>
+
 <style>
 	header {
 		display: flex;
@@ -16,6 +21,7 @@ const { current = "" } = Astro.props;
 		padding: 2em;
 		width: 100%;
 	}
+
 	@media screen and (max-width: 520px) {
 		header {
 			padding: 2em 0;
