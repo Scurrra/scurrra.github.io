@@ -1,18 +1,13 @@
 {
-    "name": "Hamilton.cr",
-    "is_pinned": true,
-    "stack": [
-        "Crystal", "Telegram Bot API"
-    ],
-    "short_description": "Telegram Bot API wrapper for Crystal.",
-    "description": "A framework for developing Telegram Bots in Crystal. Supports handling of specified commands, known text messages, and many types of messages' payloads, such as stickers, videos, animations (gifs), etc.",
-    "links": {
-        "github": "https://github.com/Scurrra/hamilton",
-        "docs": "https://scurrra.github.io/hamilton",
-        "guide": "https://scurrra.github.io/blog/hamilton-guide"
-    },
-    "dates": [
-        "Sep 2025",
-        "Present"
-    ] 
+  "name": "Hamilton.cr",
+  "is_pinned": true,
+  "stack": ["Crystal", "Telegram Bot API"],
+  "short_description": "Telegram Bot API wrapper for Crystal.",
+  "description": "Hamilton.cr is a lightweight Crystal framework for building Telegram bots, designed to simplify the development of interactive and high-performance bots. It supports handling commands, text messages, and rich media payloads (stickers, videos, GIFs, etc.), while offering built-in features like context storage for stateful conversations, asynchronous processing for scalability, and signal-based task control for managing long-running operations. The framework minimizes boilerplate and is easily extensible with custom handlers, making it ideal for both simple and complex bot applications.",
+  "links": {
+    "github": "https://github.com/Scurrra/hamilton",
+    "docs": "https://scurrra.github.io/hamilton",
+    "guide": "https://scurrra.github.io/blog/hamilton-guide"
+  },
+  "dates": ["Sep 2025", "Present"]
 }

@@ -7,17 +7,17 @@ updateDate: 'Nov 07 2025'
 
 > [Medium.com edition](https://medium.com/@iljabarouski/hamilton-cr-telegram-bot-api-wrapper-for-crystal-5a9de45f0e28)
 
-> I have a hard time naming my projects. This time I was looking for something that combined airplanes (a paper airplane from the Telegram logo) and crystals. And the name Hamilton came to mind &mdash; the name of the airport near the Great Barrier Reef [^1].
+>  often struggle to name my projects. This time I was looking for something that combined airplanes (a paper airplane from the Telegram logo) and crystals. And the name Hamilton came to mind &mdash; the name of the airport near the Great Barrier Reef [^1].
 [^1]: Yes, I know that corals are not crystals, but corals *contain* crystals. 
 
 Crystal lang has a powerful macro programming system, so I decided to do some funny and useful things with it. [Last time](https://scurrra.github.io/blog/fossil-guide/) I made [Fossil.cr](https://github.com/Scurrra/fossil) &mdash; a simple Web API framework. After that I decided that it would be entertaining[^2] to build a Telegram Bot API wrapper for Crystal, because [there were not any](https://core.telegram.org/bots/samples). 
 [^2]: *It was not entertaining most of the time.* I didn't want to scrap [the Bot API reference](https://core.telegram.org/bots/api), so I spent some time creating all the types and a huge constant dictionary of methods, from which methods were actually generated.
 
-So, in this article I want to present a *simple* shard for creating Telegram bots. The interface is even simpler than in Fossil, the functionality is easily extendable with custom handlers, though the provided handler is great itself (I really like it).
+n this article, I’ll introduce a *simple* shard for creating Telegram bots. The interface is even simpler than in Fossil, the functionality is easily extendable with custom handlers, though the provided handler is great itself (I really like it).
 
 # Creating a Telegram Bot
 
-To create and manage bots [`@BotFather`](https://t.me/BotFather) bot is used. The command we need is `/newbot`: just send this command to the bot and creation flow will begin. You will need to choose a display name for your bot and a username like `@<bot_name>_bot`. At the end `@BotFather` will return you a message containing a token needed to access HTTP API.
+To create and manage bots [`@BotFather`](https://t.me/BotFather) bot is used. The command you need is `/newbot`. Just send this command to the bot, and the creation process will begin. You will need to choose a display name for your bot and a username like `@<bot_name>_bot`. At the end `@BotFather` will return you a message containing a token needed to access HTTP API.
 
 # [`Hamilton::Api`](https://scurrra.github.io/hamilton/Hamilton/Api.html)
 
@@ -228,7 +228,7 @@ By default, Hamilton handles updates one by one. It means that
 
 Both these issues have sense only if some updates take a lot of time to be handled. Since `v0.2.0` the bot can be compiled with flag `-Dasync` (crystal's way to pass compilation flags) to make `Bot` use crystal's powerful `Fiber`s. Basically, with this flag handling of each update is done on a separate fiber. Now, the bot can handle updates from different users at the same time.
 
-Now, the problem is with `CmdHandler`: it gives an opportunity to store some data in context, which is rewritten after each successful handling. So, when the user sends an update while the old one hasn't been handled yet, the new gets the old update? And what if the user wants to stop handling of the old update? The answer is that async `CmdHandler` has a different behavior: 
+The challenge with `CmdHandler` is that it allows storing data in the context, which is overwritten after each update is processed. So, when the user sends an update while the old one hasn't been handled yet, the new gets the old update? And what if the user wants to stop handling of the old update? The answer is that async `CmdHandler` has a different behavior: 
  - it implicitly creates a `/signal` command, so the developer can not;
  - it requires the developer to add `signal : Channel(Signal)` argument to each method (type is optional, it is easily inferred by the compiler), and then the update is passed to the next handler in the chain;
  - when handler gets an update, it creates a channel to communicate with the method, and passes it as the `signal` argument;
