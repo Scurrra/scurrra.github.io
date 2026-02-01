@@ -7,9 +7,9 @@ updateDate: 'Oct 01 2025'
 
 > [Medium.com edition](https://medium.com/@iljabarouski/fossil-web-api-guide-fb44661a2d4b)
 
-Here is an example Web API in Crystal. Crystal itself provides all needed primitives for writing APIs, but some functionality has to be implemented. For these purpose many shards (Crystal-lang packages) exist.
+Here’s an example of a Web API in Crystal. Crystal provides all the primitives needed to write APIs, but some functionality still requires custom implementation. For this purpose many shards (Crystal-lang packages) exist.
 
-When learning Crystal, I decided to create my own -- [Fossil.cr](https://scurrra.github.io/fossil/). The framework is inspired by [FastAPI](https://fastapi.tiangolo.com/): simple server and endpoints creation via Crystal's metaprogramming primitives. Now let's look at how to grow fossils.
+When learning Crystal, I decided to create my own -- [Fossil.cr](https://scurrra.github.io/fossil/). The framework is inspired by [FastAPI](https://fastapi.tiangolo.com/): simple server and endpoints creation via Crystal's metaprogramming primitives. Now, let’s explore how to create APIs with Fossil.
 
 # Server creation
 
@@ -180,7 +180,7 @@ end
 
 # Dependencies
 
-Dependencies can be considered as parameters that are obtained non-directly and are required for an API endpoint function to be executed. For example, one can use dependencies for checking if the user is admin or to pass database session instance to an endpoint function.
+Dependencies can be considered as parameters that are obtained non-directly and are required for an API endpoint function to be executed. For example, you can use dependencies for checking if the user is admin or to pass database session instance to an endpoint function.
 
 `Fossil` provides two main types of dependencies:
  - `Fossil::Param::HeaderDep` and `Fossil::Param::CookieDep` take one positional parameter -- header or cookie name -- and pass it to a constructor of a type of the annotated argument. This means that this type can be constructed from a single string:
