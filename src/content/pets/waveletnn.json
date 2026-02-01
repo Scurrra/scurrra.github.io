@@ -1,17 +1,12 @@
 {
-    "name": "WaveletNN",
-    "is_pinned": true,
-    "stack": [
-        "Python (PyTorch)"
-    ],
-    "short_description": "Wavelet Transform Modules for PyTorch models.",
-    "description": "Implementation of neural network modules for discrete wavelet transform (DWT). Package provides PyTorch modules for 1D and 2D DWT which can be trained via special loss functions.",
-    "links": {
-        "github": "https://github.com/Scurrra/WaveletNN-PyTorch",
-        "pypi": "https://pypi.org/project/waveletnn"
-    },
-    "dates": [
-        "Feb 2025",
-        "Present"
-    ] 
+  "name": "WaveletNN",
+  "is_pinned": true,
+  "stack": ["Python (PyTorch)"],
+  "short_description": "Wavelet Transform Modules for PyTorch models.",
+  "description": "A PyTorch-based library for integrating wavelet transforms into neural networks. The library enables seamless integration of wavelet-based feature extraction and processing within deep learning pipelines, supporting both 1D and 2D wavelet transforms for applications like signal processing, image analysis, and time-series data augmentation. By leveraging PyTorch’s autograd system, WaveletNN-PyTorch allows for end-to-end training of wavelet-augmented neural networks, combining the strengths of wavelet analysis with modern deep learning techniques.",
+  "links": {
+    "github": "https://github.com/Scurrra/WaveletNN-PyTorch",
+    "pypi": "https://pypi.org/project/waveletnn"
+  },
+  "dates": ["Feb 2025", "Present"]
 }
