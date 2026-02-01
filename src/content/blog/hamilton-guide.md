@@ -7,13 +7,13 @@ updateDate: 'Nov 07 2025'
 
 > [Medium.com edition](https://medium.com/@iljabarouski/hamilton-cr-telegram-bot-api-wrapper-for-crystal-5a9de45f0e28)
 
->  often struggle to name my projects. This time I was looking for something that combined airplanes (a paper airplane from the Telegram logo) and crystals. And the name Hamilton came to mind &mdash; the name of the airport near the Great Barrier Reef [^1].
+>  I often struggle to name my projects. This time I was looking for something that combined airplanes (a paper airplane from the Telegram logo) and crystals. And the name Hamilton came to mind &mdash; the name of the airport near the Great Barrier Reef [^1].
 [^1]: Yes, I know that corals are not crystals, but corals *contain* crystals. 
 
 Crystal lang has a powerful macro programming system, so I decided to do some funny and useful things with it. [Last time](https://scurrra.github.io/blog/fossil-guide/) I made [Fossil.cr](https://github.com/Scurrra/fossil) &mdash; a simple Web API framework. After that I decided that it would be entertaining[^2] to build a Telegram Bot API wrapper for Crystal, because [there were not any](https://core.telegram.org/bots/samples). 
 [^2]: *It was not entertaining most of the time.* I didn't want to scrap [the Bot API reference](https://core.telegram.org/bots/api), so I spent some time creating all the types and a huge constant dictionary of methods, from which methods were actually generated.
 
-n this article, I’ll introduce a *simple* shard for creating Telegram bots. The interface is even simpler than in Fossil, the functionality is easily extendable with custom handlers, though the provided handler is great itself (I really like it).
+In this article, I’ll introduce a *simple* shard for creating Telegram bots. The interface is even simpler than in Fossil, the functionality is easily extendable with custom handlers, though the provided handler is great itself (I really like it).
 
 # Creating a Telegram Bot
 
