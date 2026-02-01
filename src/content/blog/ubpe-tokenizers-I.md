@@ -6,11 +6,11 @@ pubDate: 'Sep 26 2025'
 
 > [Medium.com edition](https://medium.com/@iljabarouski/ubpe-tokenizers-creating-a-bpe-tokenizer-from-scratch-part-1-0bdfe45783f0)
 
-When writing my master's thesis I thought it would be a great idea to compress a 1D signal by tokenizing it. Storing and transferring the compressed signal together with the tokenizer's vocabulary should be much cheaper than the long signal itself, right? The problem was that all guides and packages I found are specializing on text tokenization. So I decided to create my own.
+When writing my master's thesis, I thought it would be a great idea to compress a 1D signal by tokenizing it. Storing and transferring the compressed signal along with the tokenizer’s vocabulary should be much cheaper than the original signal, right? The problem was that all the guides and packages I found specialized in text tokenization. So, I decided to create my own.
 
 # Idea of the algorithm
 
-Byte-pair encoding is a popular text tokenization method. It's proposed to recursively substitute the most popular token pairs with a single one. The logic is simple: text can be represented as a sequence of code points in general or characters in simpler case, and each code point can be represented as a sequence of bytes. This representation is redundant and too expensive for machine learning models. So the byte sequence can be compressed a lot. First few steps of substitution process will group bytes into code points, then code points into characters, characters into syllables, n-grams, words, and even in popular phrases. The token's vocabulary obtained will highly rely on the frequency of each byte subsequence in the corpus, so it is more natural than other mentioned methods.
+Byte-pair encoding (BPE) is a popular text tokenization method. It works by recursively replacing the most frequent token pairs with a single token. The logic is simple: text can be represented as a sequence of code points (or characters, in simpler cases), and each code point can be represented as a sequence of bytes. This representation is redundant and computationally expensive for machine learning models, so the byte sequence can be significantly compressed. The first few steps of the substitution process group bytes into code points, then code points into characters, characters into syllables, n-grams, words, and even popular phrases. The resulting token vocabulary depends heavily on the frequency of byte subsequences in the corpus, making it more natural than other methods.
 
 As the algorithm described below primary was a solution to my problem (tokenization of signals -- large sequences of whole numbers), the described algorithm has several differences from the original. The signals I wanted to tokenize consist of float numbers from some range, that can be mapped on a range of whole numbers, and the range should be pretty big to have little discretization steps. For tokenizer this means that I have a very big initial alphabet (which is byte-long (256) in original method). Moreover, these signals differ from texts in their nature: due to the way the signal is recorded and written as a sequence of integers there can not be words, only subsequences that can look alike.
 
@@ -18,7 +18,7 @@ As the algorithm described below primary was a solution to my problem (tokenizat
 
 # UBPE -- Universal Byte-Pair Encoding
 
-> The algorithm assumes that you know all possible elements -- alphabet -- that can be seen in the corpus. You should either provide an alphabet dict (element to `[0..alphabet_size)` mapping) for texts or if you want a custom mapping, or just `alphabet_size` if the elements are already in `[0..alphabet_size)`.
+> The algorithm assumes that you know all possible elements (the alphabet) that can appear in the corpus. You should either provide an alphabet dict (element to `[0..alphabet_size)` mapping) for texts or if you want a custom mapping, or just `alphabet_size` if the elements are already in `[0..alphabet_size)`.
 
 Now let's build the tokenizer. First, we should substitute original elements with initial tokens from the alphabet.
 
@@ -47,7 +47,7 @@ mc = Counter(itertools.chain(*pairs)).most_common(n_candidates)
 Now, the first problem. From a sequence `..., t0, t1, t2, t3, ...` we can have pairs `(t0, t1)`, `(t1, t2)`, `(t2, t3)` in `mc`. After substituting `(t0, t1)` with a new token, we don't have `(t1, t2)` here anymore, but still have `(t2, t3)`. If we start with `(t1, t2)` instead, `(t0, t1)` and `(t2, t3)` couldn't be found anymore. So we should filter `mc` to not have collisions. Here is how to do it:
 
 ```python
-# rewrite how we build pairs and find most common
+# rewrite how we build pairs and find the most common
 pairs = [itertools.pairwise(doc) for doc in corpus]
 pairs_counter = Counter(itertools.chain(*pairs))
 mc = pairs_counter.most_common(n_candidates)
@@ -55,7 +55,7 @@ mc = pairs_counter.most_common(n_candidates)
 # filter candidates
 ## first candidate is always added
 token_pairs = [mc[0]]
-## each old token may occure only in one candidate
+## each old token may occur only in one candidate
 current_set = set(mc[0][0])
 for i in range(1, n_candidates):
     if len(current_set.intersection(mc[i][0])) != 0:
@@ -77,7 +77,7 @@ for i in range(1, n_candidates):
         current_set.update(mc[i][0])
 ```
 
-And now we have the second problem. Let's say we want to have `n_tokens` in our tokenizer, including that from the alphabet. Moreover, we want more valuable artificial (not from the alphabet) tokens have lower values. When adding several candidates at once we still preserve the order between these candidates, but not between all new tokens. Then, at the end of the building process we can accidentally generate slightly more than `n_tokens`. To later rearrange the tokens and trim vocabulary to the specified size we should weight tokens somehow. From the NLP we get a wonderful metric: idf -- inverse document frequency, which is a part of tf-idf metric. 
+And now we have the second problem. Let's say we want to have `n_tokens` in our tokenizer, including that from the alphabet. Moreover, we want more valuable artificial (not from the alphabet) tokens have lower values. When adding several candidates at once we still preserve the order between these candidates, but not between all new tokens. Then, at the end of the building process we can accidentally generate slightly more than `n_tokens`. To later rearrange the tokens and trim vocabulary to the specified size we should weight tokens somehow. From NLP, we use a useful metric: IDF (inverse document frequency), which is part of the TF-IDF metric.
 
 Now we can add new tokens. Before the main loop we should find the last token number in the alphabet and initialize two dictionaries -- one for mapping and one for weights:
 
@@ -180,7 +180,7 @@ buf = sorted(
 
 2. Trim vocabulary
 ```python
-# find indecies in `buf` to delete
+# find indices in `buf` to delete
 to_delete: list[int] = []
 for i in range(len(buf)):
     if i in to_delete:
@@ -245,7 +245,7 @@ tokens_mapper = {
 
 # Conclusion
 
-In this article we described how to create byte-pair tokenizer from scratch with some optimizations. In [the next article](https://scurrra.github.io/blog/ubpe-tokenizers-ii/) we will discuss how to use it for encoding the initial sequences into sequences of tokens and decode them back.
+In this article we described how to create a byte-pair tokenizer from scratch with some optimizations. In [the next article](https://scurrra.github.io/blog/ubpe-tokenizers-ii/) we will discuss how to use it for encoding initial sequences into token sequences and decode them back.
 
 > The algorithm is published as a package on PyPI and can be installed via [`pip install ubpe[native]`](https://pypi.org/project/ubpe/).
 

@@ -9,17 +9,17 @@ updatedDate: 'Jan 25 2026'
 
 > For tokenizer fitting algorithm see [the 1st part](https://scurrra.github.io/blog/ubpe-tokenizers-i/).
 
-In this part I will describe how to encode sequences using the fitted tokenizer and decode them back.
+In this part, I’ll describe how to encode sequences using the fitted tokenizer and decode them back.
 
 # Classic UBPE
 
-As stated in the previous part, classic realization of algorithm uses the mapping between pairs of adjacent tokens and new artificial tokens, and these artificial tokens may also be contained in pairs for sustitution.
+As stated in the previous part, classic implementation of algorithm uses the mapping between pairs of adjacent tokens and new artificial tokens, and these artificial tokens may also be contained in pairs for substitution.
 
 ## Encoding
 
 In classic variant we are forced to use recursive algorithm for encoding: on each step substitute the most valuable pair of tokens from the vocabulary with the new token. With this approach the mapping between original sequence and encoded is bijection.
 
-The algorithm has a future-problem-free optimization: we can substitute several pairs of tokens at a single step, keeping in mind that each token may occur in only one pair.
+The algorithm includes an optimization that avoids future issues: we can substitute multiple token pairs in a single step, ensuring that each token appears in only one pair at a time.
 
 > It is useful to prepare and store a list of just pairs (keys from mapping) separately to not compute it on each call of encode function.
 
@@ -67,13 +67,13 @@ while True:
 
 ## Decoding
 
-As we have an initial `alphabet`, that is used to obtain an inner representation of a sequence, we also need an `inverse_alphabet` to map this representation back:
+Since we have an initial `alphabet`, that is used to obtain an inner representation of a sequence, we also need an `inverse_alphabet` to map this representation back to the original elements:
 
 ```python
 inverse_alphabet = {value: key for key, value in alphabet.items()}
 ```
 
-The decoding process itself is very simple: if the token is an artificial one, it is replaced with a pair of tokens and the index is not changed to be able to substitute the first token from the pair if needed; if the token is from the alphabet, it is kept and the index is increased by one.
+The decoding process is straightforward: if a token is artificial, it is replaced with its corresponding pair of tokens, and the index remains unchanged (to allow further substitutions if needed). If the token is from the alphabet, it is kept as-is, and the index is incremented by one.
 
 ```python
 i = 0
@@ -87,7 +87,7 @@ tokens = [inverse_alphabet[token] for token in tokens]
 
 # Universal BPE
 
-When fitting the tokenizer, one can keep not the recursive mapping, but mapping between subsequences of different lengths and artificial tokens. The representation is more straightforward than the classic one, but is more complex for encoding.
+When fitting the tokenizer, instead of using a recursive mapping, you can maintain a mapping between subsequences of varying lengths and artificial tokens. While this representation is more intuitive than the classic approach, it introduces additional complexity during encoding.
 
 > The representation can be obtained after fitting by recursively decoding pairs from the classic mapping.
 
@@ -110,7 +110,8 @@ for key, value in tokens_mapper["forward"].items():
 > The implementation of the tree can be found [here](https://github.com/Scurrra/ubpe-native/blob/master/ubpe_native/utils.py).
 
 Now, let's discuss an encoding algorithm:
-    1. Like in classic, obtain an inner representation of a sequence.
+
+0. As in the classic approach, start by obtaining the inner representation of the sequence.
 ```python
 # as keys in `lookup` are tuples, `doc` also should be a tuple
 doc = tuple(alphabet[token] for token in doc)
