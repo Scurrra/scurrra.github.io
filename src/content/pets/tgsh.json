@@ -1,0 +1,11 @@
+{
+  "name": "tgsh",
+  "is_pinned": true,
+  "stack": ["Crystal (Hamilton)"],
+  "short_description": "Shell in Telegram Bot.",
+  "description": "tgsh is a Telegram bot template that provides secure shell access to your server via Telegram. Designed for developers and system administrators, it allows you to execute short and long-running commands, interact with processes using POSIX signals, and manage files directly from your Telegram chat. The bot supports Python script execution, real-time logging, and custom log file management, making it ideal for remote server administration. Note: Avoid using it on cloud VMs, as it may violate Terms of Service.",
+  "links": {
+    "github": "https://github.com/Scurrra/tgsh"
+  },
+  "dates": ["Nov 2025", "Present"]
+}
