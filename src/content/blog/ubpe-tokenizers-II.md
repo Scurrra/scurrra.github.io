@@ -127,7 +127,7 @@ while start < len(doc):
     start += len(stack[-1][0])
 ```
 
-2. Build the graph (directed, without cycles), where all possible paths from the start to the end is a variant of encoded sequence (so it's not a bijection). To do so, on each step we pop the top element from the stack, add each subsequence as edges to the node with value equal to start position of the subsequence, and if the node that starts after the subsequence was not already built, add a lookup result for that position to the stack.
+2. Build the graph (directed, without cycles), where all possible paths from the start to the end is a variant of encoded sequence (so it's not a bijection). To achieve this, we pop the top element from the stack at each step. We then add each subsequence as an edge to the node corresponding to the start position of the subsequence. If the node starting after the subsequence hasn’t been built yet, we add the lookup result for that position to the stack.
 
 > More correct name for this data structure can be a finite state machine, but the directed graph without cycles is also okay.
 
