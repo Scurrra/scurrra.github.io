@@ -7,25 +7,98 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<p>
-				Hi, I'm Ilja Baroŭski! Welcome to my personal
-				site/portfolio/blog! I love to solve problems and create tools from scratch.
-				Here you can find a brief intro to my projects.
-			</p>
+    <head>
+        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    </head>
+    <body>
+        <Header />
+        <main>
+            <h3>
+                Hi, I’m Ilja Baroŭski! Welcome to my personal site and
+                portfolio.
+            </h3>
 
-			<blockquote>
-				<p>
-					I'm looking for a job as Machine Learning / Software
-					Engineer. If you have some vacancies, please let me know.
-				</p>
-			</blockquote>
-		</main>
-		<Footer />
-	</body>
+            <p>
+                I love solving problems and building tools from scratch, with a
+                focus on machine learning, algorithm optimization, and software
+                development. Here, you’ll find an introduction to my projects,
+                articles, and work.
+            </p>
+
+            <blockquote>
+                <p>
+                    I’m currently looking for opportunities as a Machine
+                    Learning or Software Engineer. If you have a vacancy or an
+                    interesting project, I’d love to hear from you! You can
+                    reach me via email or check out my CVs.
+                </p>
+            </blockquote>
+
+            <ul>
+                <div class="tile-container">
+                    <li>
+                        <a href="/cvs/CV_Barouski.pdf">
+                            <img src="pdf.svg" />
+                            <h3>Full CV</h3>
+                        </a>
+                    </li>
+                </div>
+                <div class="tile-container">
+                    <li>
+                        <a href="/cvs/CV_Barouski_MLE.pdf">
+                            <img src="pdf.svg" />
+                            <h3>MLE CV</h3>
+                        </a>
+                    </li>
+                </div>
+                <div class="tile-container">
+                    <li>
+                        <a href="/cvs/CV_Barouski_SWE.pdf">
+                            <img src="pdf.svg" />
+                            <h3>SWE CV</h3>
+                        </a>
+                    </li>
+                </div>
+            </ul>
+            <style>
+                ul {
+                    display: flex;
+                    flex-wrap: wrap;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    width: 100%;
+                    padding: 0;
+                    margin: auto;
+                }
+                div.tile-container {
+                    width: 30%;
+                    padding: 0;
+                    margin: 1rem auto;
+                    gap: 2rem;
+                }
+                li {
+                    list-style: none;
+                }
+                li a {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    padding: 0.5rem 0 0 0;
+                }
+                li a h3 {
+                    margin: 0 0 0 0.5rem;
+                }
+                li a img {
+                    height: 1.5rem;
+                }
+
+                @media (max-width: 768px) {
+                    div.tile-container {
+                        width: 73%;
+                    }
+                }
+            </style>
+        </main>
+        <Footer />
+    </body>
 </html>
