@@ -7,44 +7,71 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<p>
-				Hi, I'm Ilja Baroŭski, Master of Mathematics and Computer
-				Science. In 2023, I graduated from the Faculty of Mechanics and
-				Mathematics of the Belarusian State University as Bachelor of
-				Mathematics and System Analyses. In 2025, I got Master's degree
-				in Mathematics and Computer Science.
-			</p>
+    <head>
+        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    </head>
+    <body>
+        <Header />
+        <main>
+            <p>
+                Hi, I’m Ilja Baroŭski, a Master of Mathematics and Computer
+                Science. I graduated from the Faculty of Mechanics and
+                Mathematics at Belarusian State University in 2023 with a
+                Bachelor’s degree in Mathematics and System Analysis. In 2025, I
+                earned my Master’s degree in Mathematics and Computer Science.
+            </p>
 
-			<p>
-				I have experience with C/C++, Rust, Python, Julia, C#, Dart,
-				Wolfram, Go and Crystal. During my programming journey I try to
-				make things better, optimize algorithm and create tools from
-				scratch. It can be proved by projects listed on the <a
-					href="/pets"><quote>projects</quote></a
-				> page.
-			</p>
+            <p>
+                I have experience with a variety of programming languages,
+                including C/C++, Rust, Python, Julia, C#, Dart, Wolfram
+                Language, Go, and Crystal. My approach to programming is rooted
+                in improving efficiency, optimizing algorithms, and building
+                tools from the ground up. You can explore some of my projects on
+                the <a href="/pets"><quote>projects</quote></a> page.
+            </p>
 
-			<!-- <p>
-				<a href="https://github.com/Scurrra/ya">Yet Another P2P</a> 
+            <!-- <p>
+				<a href="https://github.com/Scurrra/ya">Yet Another P2P</a>
 			</p> -->
 
-			<p>
-				My master's thesis was on computer modeling of human voice. The
-				idea was to use wavelet theory to simplify model and make it
-				really lightweight. During this work the <a
-					href="https://github.com/Scurrra/WaveletNN-PyTorch"
-					>waveletnn</a
-				> (Wavelet Neural Networks &mdash; wavelet transforms in PyTorch
-				models) and <a href="https://github.com/Scurrra/ubpe">ubpe</a> (Universal
-				Byte-Pair Encoding) libraries were developed.
-			</p>
-		</main>
-		<Footer />
-	</body>
+            <p>
+                For my master’s thesis, I focused on computer modeling of the
+                human voice. The goal was to simplify the model using wavelet
+                theory, making it lightweight yet effective. As part of this
+                work, I developed two key libraries:
+                <ul>
+                    <li>
+                        <a href="https://github.com/Scurrra/WaveletNN-PyTorch"
+                            >waveletnn</a
+                        >: A library for integrating wavelet transforms into
+                        PyTorch models, enabling efficient neural network
+                        architectures for signal processing.
+                    </li>
+                    <li>
+                        <a href="https://github.com/Scurrra/ubpe">ubpe</a> A Universal
+                        Byte-Pair Encoding library designed for general sequences,
+                        including text and quantized signals. UBPE stands out for
+                        its ability to generate multiple encoding variants and its
+                        optimized implementation for diverse data types. For a deeper
+                        dive into UBPE, check out my detailed articles on its design
+                        and implementation: <a
+                            href="https://scurrra.github.io/blog/ubpe-tokenizers-i/"
+                            >training process</a
+                        >, <a
+                            href="https://scurrra.github.io/blog/ubpe-tokenizers-ii/"
+                            >encoding and decoding</a
+                        >.
+                    </li>
+                </ul>
+            </p>
+
+            <p>
+                Beyond technical work, I’m continuously exploring ways to bridge
+                theoretical research with practical applications. Whether it’s
+                through open-source contributions, writing, or collaboration, I
+                aim to create tools that are both innovative and accessible.
+            </p>
+        </main>
+        <Footer />
+    </body>
 </html>
