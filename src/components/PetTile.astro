@@ -69,6 +69,13 @@ const { project } = Astro.props;
                     </h5>
                 )
             }
+            {
+                project.data.links.book && (
+                    <h5>
+                        <a href={project.data.links.book}>book</a>
+                    </h5>
+                )
+            }
         </div>
         <div class="description">
             <details>
