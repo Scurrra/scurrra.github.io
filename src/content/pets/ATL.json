@@ -1,0 +1,13 @@
+{
+  "name": "ATL",
+  "is_pinned": true,
+  "stack": ["C++"],
+  "short_description": "Abnormal Template Library and Book.",
+  "description": "Abnormal Template Library will provide implementations of some containers and algorithms from the C++ Standard Template Library, and additionally some other data structures and algorithms that are not a part of STL for some reason. The book will cover algorithms and data structures I find interesting and useful with code snippets in C++20.",
+  "links": {
+    "github": "https://github.com/Scurrra/atl",
+    "docs": "https://scurrra.github.io/atl/docs",
+    "book": "https://scurrra.github.io/atl/book"
+  },
+  "dates": ["May 2026", "Present"]
+}
